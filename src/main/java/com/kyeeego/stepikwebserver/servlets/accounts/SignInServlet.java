@@ -2,7 +2,7 @@ package com.kyeeego.stepikwebserver.servlets.accounts;
 
 import com.google.gson.Gson;
 import com.kyeeego.stepikwebserver.accounts.AccountService;
-import com.kyeeego.stepikwebserver.accounts.User;
+import com.kyeeego.stepikwebserver.models.dto.User;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,9 +17,7 @@ public class SignInServlet extends HttpServlet {
 
         res.setContentType("text/plain;charset=utf-8");
 
-        if (!AccountService.instance().isRegistered(user.login())
-                || !AccountService.instance().getByLogin(user.login()).password()
-                .equals(user.password())) {
+        if (!AccountService.instance().logIn(user.login(), user.password())) {
             res.getWriter().println("Unauthorized");
             res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;

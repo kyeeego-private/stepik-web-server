@@ -1,7 +1,7 @@
 package com.kyeeego.stepikwebserver.accounts;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.kyeeego.stepikwebserver.db.Repository;
+import com.kyeeego.stepikwebserver.models.User;
 
 public class AccountService {
 
@@ -18,19 +18,19 @@ public class AccountService {
     private AccountService() {
     }
 
-    private final Map<String, User> usersByLogin = new HashMap<>();
 
     public void register(String login, String password) {
-        if (!usersByLogin.containsKey(login)) {
-            usersByLogin.put(login, new User(login, password));
+        if (Repository.instance().getUserByLogin(login) == null) {
+            Repository.instance().save(new User(login, password));
         }
     }
 
-    public User getByLogin(String login) {
-        return usersByLogin.get(login);
+    public boolean logIn(String login, String password) {
+        var user = Repository.instance().getUserByLogin(login);
+        return user != null && user.getPassword().equals(password);
     }
 
-    public boolean isRegistered(String login) {
-        return usersByLogin.containsKey(login);
+    public User getByLogin(String login) {
+        return Repository.instance().getUserByLogin(login);
     }
 }

@@ -36,3 +36,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+h2db.mv.db
+h2db.trace.db
