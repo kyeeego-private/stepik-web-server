@@ -1,4 +1,4 @@
-package com.kyeeego.stepikwebserver.accounts;
+package com.kyeeego.stepikwebserver.services;
 
 import com.kyeeego.stepikwebserver.db.Repository;
 import com.kyeeego.stepikwebserver.models.User;
@@ -30,7 +30,4 @@ public class AccountService {
         return user != null && user.getPassword().equals(password);
     }
 
-    public User getByLogin(String login) {
-        return Repository.instance().getUserByLogin(login);
-    }
 }

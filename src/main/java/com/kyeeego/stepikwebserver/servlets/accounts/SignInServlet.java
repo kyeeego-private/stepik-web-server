@@ -1,7 +1,7 @@
 package com.kyeeego.stepikwebserver.servlets.accounts;
 
 import com.google.gson.Gson;
-import com.kyeeego.stepikwebserver.accounts.AccountService;
+import com.kyeeego.stepikwebserver.services.AccountService;
 import com.kyeeego.stepikwebserver.models.dto.User;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
