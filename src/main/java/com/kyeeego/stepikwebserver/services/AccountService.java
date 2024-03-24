@@ -2,6 +2,8 @@ package com.kyeeego.stepikwebserver.services;
 
 import com.kyeeego.stepikwebserver.db.Repository;
 import com.kyeeego.stepikwebserver.models.User;
+import lombok.Getter;
+import lombok.Setter;
 
 public class AccountService {
 
@@ -18,6 +20,9 @@ public class AccountService {
     private AccountService() {
     }
 
+    @Getter
+    @Setter
+    private int usersLimit = 10;
 
     public void register(String login, String password) {
         if (Repository.instance().getUserByLogin(login) == null) {
