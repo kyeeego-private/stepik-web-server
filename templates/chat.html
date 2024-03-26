@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat</title>
+</head>
+<body>
+
+<div>
+    <label for="username">Your name: </label><input type="text" id="username"/>
+</div>
+
+<div id="message_box"></div>
+
+<div>
+    <input type="text" id="message">
+    <button id="send_msg">Send</button>
+</div>
+
+<script>
+    let username = document.getElementById('username')
+    let messageBox = document.getElementById('message_box')
+    let messageInput = document.getElementById('message')
+    let send = document.getElementById('send_msg')
+
+    let ws = new WebSocket("ws://localhost:8081/chatws");
+    ws.onmessage = (e) => {
+        console.log(e.data)
+        let parts = e.data.split(':')
+
+        let msg = document.createElement('div')
+
+        let name = document.createElement('span')
+        name.classList.add('bold')
+        name.textContent = parts[0]
+        let text = document.createElement('span')
+        text.textContent = ': ' + parts[1]
+
+        msg.appendChild(name)
+        msg.appendChild(text)
+
+        messageBox.appendChild(msg)
+    }
+
+    send.onclick = () => {
+        let msg = username.value + ':' + messageInput.value
+        ws.send(msg)
+        messageInput.value = ''
+    }
+</script>
+<style>
+    .bold {
+        font-weight: bold;
+    }
+</style>
+</body>
+</html>
