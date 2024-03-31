@@ -1,0 +1,4 @@
+<class name="com.kyeeego.stepikwebserver.models.TestResource">
+    <name>name</name>
+    <age>55</age>
+</class>
