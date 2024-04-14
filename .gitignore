@@ -39,3 +39,5 @@ build/
 
 h2db.mv.db
 h2db.trace.db
+
+test.go

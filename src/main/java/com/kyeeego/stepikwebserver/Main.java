@@ -16,10 +16,20 @@ import org.eclipse.jetty.websocket.server.config.JettyWebSocketServletContainerI
 
 import javax.management.ObjectName;
 import javax.xml.transform.sax.SAXResult;
+import java.io.IOException;
 import java.lang.management.ManagementFactory;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+
+
+    public static void main(String[] args) throws IOException {
+        var srv = new SocketServer();
+        srv.listen(5050);
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public static void oldMain(String[] args) throws Exception {
 
         Repository.instance();
 
